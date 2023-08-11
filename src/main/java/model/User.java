@@ -1,9 +1,7 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -15,9 +13,17 @@ public class User {
 
     private String username;
 
-    public User(long id, String username) {
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    public User(long id, String username, UserStatus status, LocalDateTime createdAt) {
         this.id = id;
         this.username = username;
+        this.status = status;
+        this.createdAt = createdAt;
     }
 
     public User() {}
@@ -38,17 +44,20 @@ public class User {
         this.username = username;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id && Objects.equals(username, user.username);
+    public UserStatus getStatus() {
+        return status;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, username);
+    public void setStatus(UserStatus status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
@@ -56,6 +65,8 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
+                ", status=" + status +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }
