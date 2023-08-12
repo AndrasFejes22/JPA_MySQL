@@ -12,6 +12,7 @@ public class User {
     private long id;
 
     private String username;
+    private String email;
 
     @Enumerated(EnumType.STRING)
     private UserStatus status;
@@ -19,11 +20,16 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    public User(long id, String username, UserStatus status, LocalDateTime createdAt) {
+    @Embedded
+    private Address address;
+
+    public User(long id, String username, UserStatus status, LocalDateTime createdAt, String email, Address address) {
         this.id = id;
         this.username = username;
         this.status = status;
         this.createdAt = createdAt;
+        this.email = email;
+        this.address = address;
     }
 
     public User() {}
@@ -60,13 +66,31 @@ public class User {
         this.createdAt = createdAt;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 ", status=" + status +
                 ", createdAt=" + createdAt +
+                ", address=" + address +
                 '}';
     }
 }

@@ -8,7 +8,7 @@ public class Main {
         // DAO:
 
         UserDao userDao = new UserDao();
-        User user = userDao.getUserBId(4L);
+        User user = userDao.getUserBId(6L);
         System.out.println(user);
     }
 }
