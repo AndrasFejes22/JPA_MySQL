@@ -20,7 +20,10 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Embedded
+
+    //@Embedded
+    @OneToOne
+    @JoinColumn(name = "address_id")
     private Address address;
 
     public User(long id, String username, UserStatus status, LocalDateTime createdAt, String email, Address address) {

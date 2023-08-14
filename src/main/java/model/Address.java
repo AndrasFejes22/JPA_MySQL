@@ -1,15 +1,20 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 
-@Embeddable
-public class Address implements Serializable {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
+
+//@Embeddable //Embedded class volt de átalakítottam önálló entitássá-->@Entity
+@Entity
+@Table(name = "addresses")
+public class Address /*implements Serializable */{
+
+    //@Serial
+    //private static final long serialVersionUID = 1L;
+    @Id
+    private int id;
 
     private String city;
     private int zipcode;
@@ -27,7 +32,7 @@ public class Address implements Serializable {
 
     public Address() {}
 
-    /*
+
     public String getCity() {
         return city;
     }
@@ -59,7 +64,7 @@ public class Address implements Serializable {
     public void setHouseNumber(int houseNumber) {
         this.houseNumber = houseNumber;
     }
-    */
+
 
 
     @Override
