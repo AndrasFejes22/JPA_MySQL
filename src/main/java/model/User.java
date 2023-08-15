@@ -3,6 +3,7 @@ package model;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -26,6 +27,10 @@ public class User {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private Set<Book> books;
+
     public User(long id, String username, UserStatus status, LocalDateTime createdAt, String email, Address address) {
         this.id = id;
         this.username = username;
@@ -33,6 +38,14 @@ public class User {
         this.createdAt = createdAt;
         this.email = email;
         this.address = address;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 
     public User() {}
@@ -90,10 +103,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", status=" + status +
-                ", createdAt=" + createdAt +
-                ", address=" + address +
+                ", books=" + books +
                 '}';
     }
 }
