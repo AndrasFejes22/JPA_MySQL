@@ -10,6 +10,7 @@ public class Book {
     private int id;
 
     private String title;
+    private String author;
     private String publisher;
 
     private int year;
@@ -23,9 +24,10 @@ public class Book {
      */
 
 
-    public Book(int id, String title, String publisher, int year, String ISBN /*User user*/) {
+    public Book(int id, String title, String author,String publisher, int year, String ISBN /*User user*/) {
         this.id = id;
         this.title = title;
+        this.author = author;
         this.publisher = publisher;
         this.year = year;
         this.ISBN = ISBN;
@@ -75,17 +77,23 @@ public class Book {
         this.ISBN = ISBN;
     }
 
+    public String getAuthor() {
+        return author;
+    }
 
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
                 ", publisher='" + publisher + '\'' +
                 ", year=" + year +
                 ", ISBN='" + ISBN + '\'' +
-
                 '}';
     }
 }
